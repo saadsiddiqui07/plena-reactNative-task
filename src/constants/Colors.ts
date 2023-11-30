@@ -1,3 +1,4 @@
+// CONSTANT COLORS FROM FIGMA DESIGN
 export default {
   primary: '#2A4BA0',
   secondary: '#153075',
