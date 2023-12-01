@@ -7,4 +7,5 @@ export default {
   labelText: '#A9B4BC',
   grey: '#1E222B',
   titleGrey: '#616A7D',
+  favouriteBtn: '#e75480',
 };

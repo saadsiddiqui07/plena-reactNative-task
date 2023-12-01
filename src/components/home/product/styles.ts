@@ -6,6 +6,16 @@ const styles = StyleSheet.create({
     // width: '100%',
     // width: WIDTH / 2,
     width: '100%',
+    position: 'relative',
+  },
+  favouriteBtn: {
+    position: 'absolute',
+    zIndex: 1,
+    backgroundColor: 'white',
+    left: 10,
+    top: 10,
+    padding: 5,
+    borderRadius: 999,
   },
   image: {
     width: '100%',

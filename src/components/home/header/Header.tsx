@@ -1,14 +1,21 @@
-import {View, Text, TextInput} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import React from 'react';
 import styles from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useAtomValue} from 'jotai';
+import {cartAtom} from '../../../atoms/cartAtom';
 
 const Header = () => {
+  const cart = useAtomValue(cartAtom);
+  console.log('Length', cart.length);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Hey, Saad</Text>
-        <Ionicons name="cart-outline" color={'white'} size={25} />
+        <TouchableOpacity>
+          <Text>{cart.length}</Text>
+          <Ionicons name="cart-outline" color={'white'} size={25} />
+        </TouchableOpacity>
       </View>
       <View style={styles.textInput}>
         <Ionicons name="search-outline" color={'#8891A5'} size={20} />
@@ -21,17 +28,17 @@ const Header = () => {
       <View style={styles.headerDetails}>
         <View style={styles.detailsContainer}>
           <Text style={styles.label}>Delivery to</Text>
-          <View style={styles.details}>
+          <TouchableOpacity style={styles.details}>
             <Text style={styles.detailsText}>Green Way 3000, Sylhet</Text>
             <Ionicons name="chevron-down-outline" color={'#8891A5'} size={20} />
-          </View>
+          </TouchableOpacity>
         </View>
         <View style={styles.detailsContainer}>
           <Text style={styles.label}>Within</Text>
-          <View style={styles.details}>
+          <TouchableOpacity style={styles.details}>
             <Text style={styles.detailsText}>1 Hour</Text>
             <Ionicons name="chevron-down-outline" color={'#8891A5'} size={20} />
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

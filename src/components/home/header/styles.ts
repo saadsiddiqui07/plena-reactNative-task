@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
     padding: 15,
     height: HEIGHT / 3.5,
   },
+
+  cartCount: {
+    backgroundColor: Colors.cardActiveColor,
+  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',

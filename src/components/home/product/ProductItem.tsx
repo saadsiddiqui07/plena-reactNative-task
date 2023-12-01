@@ -16,6 +16,9 @@ const ProductItem = ({item}: Props) => {
       activeOpacity={0.8}
       style={styles.container}
       onPress={() => console.log(item.id)}>
+      <TouchableOpacity style={styles.favouriteBtn}>
+        <Ionicons name="heart-outline" color={Colors.favouriteBtn} size={20} />
+      </TouchableOpacity>
       <Image
         source={{uri: item.thumbnail}}
         resizeMode="cover"
