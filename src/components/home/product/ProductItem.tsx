@@ -8,14 +8,15 @@ import {truncateText} from '../../../utils';
 
 interface Props {
   item: Partial<Product>;
+  navigation: any;
 }
 
-const ProductItem = ({item}: Props) => {
+const ProductItem = ({item, navigation}: Props) => {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       style={styles.container}
-      onPress={() => console.log(item.id)}>
+      onPress={() => navigation.navigate('Details', {id: item.id})}>
       <TouchableOpacity style={styles.favouriteBtn}>
         <Ionicons name="heart-outline" color={Colors.favouriteBtn} size={20} />
       </TouchableOpacity>

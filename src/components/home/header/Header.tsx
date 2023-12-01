@@ -7,13 +7,12 @@ import {cartAtom} from '../../../atoms/cartAtom';
 
 const Header = () => {
   const cart = useAtomValue(cartAtom);
-  console.log('Length', cart.length);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Hey, Saad</Text>
-        <TouchableOpacity>
-          <Text>{cart.length}</Text>
+        <TouchableOpacity style={styles.cart}>
+          {/* <Text style={styles.cartCount}>{cart.length}</Text> */}
           <Ionicons name="cart-outline" color={'white'} size={25} />
         </TouchableOpacity>
       </View>

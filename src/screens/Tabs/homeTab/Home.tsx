@@ -8,7 +8,7 @@ import Banners from '../../../components/home/banners/Banners';
 import ProductItem from '../../../components/home/product/ProductItem';
 import {Product} from '../../../interfaces/product';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: any) => {
   const [products, setProducts] = useState<Partial<Product>[]>([]);
 
   const fetchProducts = async () => {
@@ -36,7 +36,9 @@ const HomeScreen = () => {
         contentContainerStyle={styles.products}
         ListHeaderComponent={<Banners />}
         numColumns={2}
-        renderItem={({item}) => <ProductItem item={item} />}
+        renderItem={({item}) => (
+          <ProductItem item={item} navigation={navigation} />
+        )}
       />
     </SafeAreaView>
   );
