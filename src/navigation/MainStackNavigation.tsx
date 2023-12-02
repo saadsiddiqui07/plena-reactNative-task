@@ -30,7 +30,17 @@ const MainStackNavigation = () => {
           animationTypeForReplace: 'push',
         }}
       />
-      <Stack.Screen name="Cart" component={CartScreen} />
+      <Stack.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{
+          headerShown: false,
+          headerShadowVisible: false,
+          headerTransparent: true,
+          animation: 'slide_from_right',
+          animationTypeForReplace: 'push',
+        }}
+      />
     </Stack.Navigator>
   );
 };

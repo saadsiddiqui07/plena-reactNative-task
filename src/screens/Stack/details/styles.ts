@@ -13,6 +13,23 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     padding: 10,
   },
+  cart: {
+    flexDirection: 'row',
+    position: 'relative',
+  },
+  count: {
+    backgroundColor: Colors.cardActiveColor,
+    borderRadius: 30,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    paddingHorizontal: 5,
+  },
+  cartCount: {
+    // position: 'absolute',
+    fontSize: 15,
+    color: '#fff',
+  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',

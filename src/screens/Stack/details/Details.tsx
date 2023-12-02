@@ -1,10 +1,19 @@
-import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
+import {
+  SafeAreaView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Colors from '../../../constants/Colors';
 import {Product} from '../../../interfaces/product';
+import {useAtomValue} from 'jotai';
+import {cartAtom} from '../../../atoms/cartAtom';
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 // import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
 // import {HEIGHT} from '../../../constants/Dimensions';
 
@@ -17,7 +26,7 @@ const DetailsScreen = ({navigation, route}: any) => {
   // const ref = useRef<ICarouselInstance>(null);
 
   const [product, setProduct] = useState<Product>();
-  console.log(product);
+  const cart = useAtomValue(cartAtom);
 
   useEffect(() => {
     const handleFetchDetaills = async (productId: number) => {
@@ -36,26 +45,27 @@ const DetailsScreen = ({navigation, route}: any) => {
 
   return (
     <SafeAreaView style={styles.main}>
+      <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backBtn}
           onPress={() => navigation.goBack()}>
           <Ionicons name="chevron-back-outline" color={Colors.grey} size={18} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-          <Ionicons name="cart-outline" color={Colors.grey} size={28} />
+        <TouchableOpacity
+          style={styles.cart}
+          onPress={() => navigation.navigate('Cart')}>
+          {/* <Ionicons name="cart-outline" color={'white'} size={25} /> */}
+          <SimpleLineIcons name="bag" color={Colors.grey} size={28} />
+          <View style={styles.count}>
+            <Text style={styles.cartCount}>{cart.length}</Text>
+          </View>
         </TouchableOpacity>
       </View>
       <View style={styles.details}>
         <Text style={styles.category}>{product?.category}</Text>
         <Text style={styles.title}>{product?.title}</Text>
         <View>
-          {/* {Array(product?.rating.toFixed(1)
-            .fill()
-            .map((_, i) => (
-              <AntDesign key={i} name="star" color={Colors.grey} size={28} />;
-            ))} */}
-
           <AntDesign name="star" color={'gold'} size={22} />
         </View>
         <View style={styles.images} />

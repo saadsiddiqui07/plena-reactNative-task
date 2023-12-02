@@ -15,7 +15,9 @@ const HomeScreen = ({navigation}: any) => {
     try {
       const response = await fetch('https://dummyjson.com/products');
       const data = await response.json();
-      setProducts(data.products);
+      if (data) {
+        setProducts(data.products);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -27,13 +29,14 @@ const HomeScreen = ({navigation}: any) => {
   return (
     <SafeAreaView style={styles.main}>
       <StatusBar backgroundColor={Colors.primary} />
-      <Header />
+      <Header navigation={navigation} />
       <FlashList
         data={products}
         estimatedItemSize={100}
         keyExtractor={data => `${data.id}`}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.products}
+        style={styles.dataView}
         ListHeaderComponent={<Banners />}
         numColumns={2}
         renderItem={({item}) => (

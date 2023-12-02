@@ -5,6 +5,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
 import Colors from '../../../constants/Colors';
 import {truncateText} from '../../../utils';
+import {cartAtom} from '../../../atoms/cartAtom';
+import {useAtom} from 'jotai';
 
 interface Props {
   item: Partial<Product>;
@@ -12,6 +14,12 @@ interface Props {
 }
 
 const ProductItem = ({item, navigation}: Props) => {
+  const [products, setProducts] = useAtom(cartAtom);
+
+  const addProcuctToCart = (added: Product) => {
+    setProducts([...products, added]);
+  };
+
   return (
     <TouchableOpacity
       activeOpacity={0.8}
@@ -31,7 +39,7 @@ const ProductItem = ({item, navigation}: Props) => {
           <Text style={styles.price}>${item.price}</Text>
           <Text style={styles.title}>{truncateText(item.title!, 15)}</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => addProcuctToCart(item)}>
           <Ionicons
             name="add-circle"
             size={30}

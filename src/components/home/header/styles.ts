@@ -9,19 +9,22 @@ const styles = StyleSheet.create({
     height: HEIGHT / 3.5,
   },
   cart: {
+    flexDirection: 'row',
     position: 'relative',
+  },
+  count: {
+    backgroundColor: Colors.cardActiveColor,
+    borderRadius: 30,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    paddingHorizontal: 5,
   },
   cartCount: {
     // position: 'absolute',
-    zIndex: 1,
-    right: 1,
-    top: 0,
-    color: Colors.cardActiveColor,
-    fontSize: 20,
+    fontSize: 15,
+    color: '#fff',
   },
-  // cartCount: {
-  //   backgroundColor: Colors.cardActiveColor,
-  // },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',

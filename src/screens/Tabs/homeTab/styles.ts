@@ -14,10 +14,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: 'black',
   },
-  dataView: {
-    padding: 10,
-    marginTop: 10,
-  },
+  dataView: {},
   products: {
     padding: 15,
   },

@@ -2,18 +2,30 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import React from 'react';
 import styles from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {useAtomValue} from 'jotai';
 import {cartAtom} from '../../../atoms/cartAtom';
 
-const Header = () => {
+interface HeaderProps {
+  navigation: any;
+}
+
+const Header = ({navigation}: HeaderProps) => {
   const cart = useAtomValue(cartAtom);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Hey, Saad</Text>
-        <TouchableOpacity style={styles.cart}>
-          {/* <Text style={styles.cartCount}>{cart.length}</Text> */}
-          <Ionicons name="cart-outline" color={'white'} size={25} />
+        <TouchableOpacity
+          style={styles.cart}
+          onPress={() => navigation.navigate('Cart')}>
+          {/* <Ionicons name="cart-outline" color={'white'} size={25} /> */}
+          <SimpleLineIcons name="bag" color={'#fff'} size={28} />
+          <View style={styles.count}>
+            <Text style={styles.cartCount}>{cart.length}</Text>
+          </View>
         </TouchableOpacity>
       </View>
       <View style={styles.textInput}>
