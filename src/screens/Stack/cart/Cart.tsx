@@ -36,7 +36,7 @@ const CartScreen = ({navigation}: any) => {
         renderItem={({item}) => <CartItem item={item} />}
         contentContainerStyle={styles.cart}
       />
-      <Subtotal />
+      <Subtotal navigation={navigation} />
     </SafeAreaView>
   );
 };

@@ -11,22 +11,23 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Colors from '../../../constants/Colors';
 import {Product} from '../../../interfaces/product';
-import {useAtomValue} from 'jotai';
+import {useAtom} from 'jotai';
 import {cartAtom} from '../../../atoms/cartAtom';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-// import Carousel, {ICarouselInstance} from 'react-native-reanimated-carousel';
-// import {HEIGHT} from '../../../constants/Dimensions';
-
-// const {height, width} = Dimensions.get('window');
-
-// const HEGHT = height / 3;
 
 const DetailsScreen = ({navigation, route}: any) => {
   const {id} = route.params;
-  // const ref = useRef<ICarouselInstance>(null);
-
   const [product, setProduct] = useState<Product>();
-  const cart = useAtomValue(cartAtom);
+  const [cart, setCart] = useAtom(cartAtom);
+
+  const handleAddToCart = () => {
+    const prodcutToAdd = {
+      ...product!,
+      isFavourite: product?.isFavourite,
+      quantity: 1,
+    };
+    setCart([...cart, prodcutToAdd]);
+  };
 
   useEffect(() => {
     const handleFetchDetaills = async (productId: number) => {
@@ -78,7 +79,7 @@ const DetailsScreen = ({navigation, route}: any) => {
           </View>
         </View>
         <View style={styles.buttons}>
-          <TouchableOpacity style={styles.addBtn}>
+          <TouchableOpacity style={styles.addBtn} onPress={handleAddToCart}>
             <Text style={styles.addBtnText}>Add To Cart</Text>
           </TouchableOpacity>
 
@@ -90,21 +91,6 @@ const DetailsScreen = ({navigation, route}: any) => {
           <Text style={styles.label}>Details</Text>
           <Text style={styles.detailText}>{product?.description}</Text>
         </View>
-        {/* <Carousel
-            ref={ref}
-            data={product?.images!}
-            width={width}
-            height={HEIGHT}
-            renderItem={({item, index}) => (
-              <Image
-                key={index}
-                source={{uri: item}}
-                width={width}
-                height={300}
-              />
-            )}
-          /> */}
-        {/* </View> */}
       </View>
     </SafeAreaView>
   );

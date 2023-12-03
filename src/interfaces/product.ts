@@ -10,4 +10,6 @@ export interface Product {
   category: string;
   thumbnail: string;
   images: string[];
+  isFavourite?: boolean;
+  quantity?: number;
 }
