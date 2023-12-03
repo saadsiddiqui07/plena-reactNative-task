@@ -11,6 +11,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import Colors from '../constants/Colors';
+import {HEIGHT} from '../constants/Dimensions';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +25,7 @@ const Tabs = [
 const animate1 = {
   0: {scale: 0.5, translateY: 7},
   0.92: {translateY: -34},
-  1: {scale: 1.1, translateY: -20},
+  1: {scale: 1.1, translateY: -18},
 };
 const animate2 = {
   0: {scale: 1.2, translateY: -24},
@@ -39,10 +40,8 @@ const TabButton = (props: any) => {
   useEffect(() => {
     if (focused) {
       viewRef.current.animate(animate1);
-      // circleRef.current.animate(circle1);
     } else {
       viewRef.current.animate(animate2);
-      // circleRef.current.animate(circle2);
     }
   }, [focused]);
 
@@ -51,14 +50,6 @@ const TabButton = (props: any) => {
       style={styles.container}
       activeOpacity={1}
       onPress={onPress}>
-      {/* <View style={styles.container}>
-        <Feather
-          name={item.icon}
-          size={25}
-          color={focused ? Colors.activeIconTintColor : 'gray'}
-        />
-        <Text style={styles.text}>{item.route}</Text>
-      </View> */}
       <Animatable.View ref={viewRef} duration={500} style={styles.container}>
         <View style={styles.btn}>
           <View style={focused && styles.circle} />
@@ -74,9 +65,15 @@ const TabButton = (props: any) => {
   );
 };
 
+const BOTTOM_TAB_HEIGHT = HEIGHT / 12;
+
 const TabNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={{headerShown: false}}>
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {height: BOTTOM_TAB_HEIGHT},
+      }}>
       {Tabs.map((item, index) => {
         return (
           <Tab.Screen
@@ -84,6 +81,7 @@ const TabNavigator = () => {
             name={item.route}
             component={item.component}
             options={{
+              // eslint-disable-next-line react/no-unstable-nested-components
               tabBarButton: (props: BottomTabBarButtonProps) => (
                 <TabButton {...props} item={item} />
               ),
@@ -112,6 +110,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 10,
     textAlign: 'center',
+    color: '#8891A5',
   },
   focused: {
     flex: 1,
