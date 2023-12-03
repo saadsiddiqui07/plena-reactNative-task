@@ -1,11 +1,11 @@
-import {Text, View} from 'react-native';
+import {SafeAreaView, Text} from 'react-native';
 import React from 'react';
 
 const CategoriesScreen = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>CategoriesScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -9,7 +9,7 @@ import ProductItem from '../../../components/home/product/ProductItem';
 import {Product} from '../../../interfaces/product';
 
 const HomeScreen = ({navigation}: any) => {
-  const [products, setProducts] = useState<Partial<Product>[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   const fetchProducts = async () => {
     try {

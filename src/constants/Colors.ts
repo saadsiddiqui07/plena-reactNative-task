@@ -8,4 +8,6 @@ export default {
   grey: '#1E222B',
   titleGrey: '#616A7D',
   favouriteBtn: '#e75480',
+  activeIconBackgroundColor: '#1E222B',
+  activeIconTintColor: '#F9B023',
 };
