@@ -10,25 +10,47 @@ import {
 import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import Colors from '../../../constants/Colors';
 import {Product} from '../../../interfaces/product';
 import {useAtom} from 'jotai';
 import {cartAtom} from '../../../atoms/cartAtom';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import StarRating from '../../../components/start-rating';
+import {favouriteAtom} from '../../../atoms/favouriteAtom';
 
 const DetailsScreen = ({navigation, route}: any) => {
   const {id} = route.params;
   const [product, setProduct] = useState<Product>();
   const [cart, setCart] = useAtom(cartAtom);
+  const [favList, setFavList] = useAtom(favouriteAtom);
+
+  const isFavourite = favList.find((obj: Product) => obj.id === product?.id);
+  const isAdded = cart.find((obj: Product) => obj.id === product?.id);
 
   const handleAddToCart = () => {
+    if (isAdded) {
+      return;
+    }
     const prodcutToAdd = {
       ...product!,
       isFavourite: product?.isFavourite,
       quantity: 1,
     };
     setCart([...cart, prodcutToAdd]);
+  };
+
+  const handleAddToFavourites = () => {
+    if (!isFavourite) {
+      const prodcutToAdd = {
+        ...product!,
+        isFavourite: true,
+        quantity: product?.quantity,
+      };
+      setFavList([...favList, prodcutToAdd]);
+    } else {
+      const newList = favList.filter((obj: Product) => obj.id !== product?.id);
+      setFavList(newList);
+    }
   };
 
   useEffect(() => {
@@ -68,15 +90,25 @@ const DetailsScreen = ({navigation, route}: any) => {
       <View style={styles.details}>
         <Text style={styles.category}>{product?.category}</Text>
         <Text style={styles.title}>{product?.title}</Text>
-        <View>
-          <AntDesign name="star" color={'gold'} size={22} />
+        <View style={styles.ratings}>
+          <StarRating rating={product?.rating!} />
         </View>
         <View style={styles.images}>
+          <TouchableOpacity
+            style={styles.favouriteBtn}
+            onPress={handleAddToFavourites}>
+            <Ionicons
+              name={isFavourite ? 'heart' : 'heart-outline'}
+              color={Colors.favouriteBtn}
+              size={25}
+            />
+          </TouchableOpacity>
           <FlatList
             data={product?.images}
             pagingEnabled
             horizontal
             snapToAlignment="center"
+            indicatorStyle="default"
             renderItem={({item}) => (
               <Image source={{uri: item}} style={styles.image} />
             )}

@@ -36,29 +36,47 @@ const styles = StyleSheet.create({
     padding: 18,
   },
   details: {
-    padding: 18,
+    // padding: 18,
   },
   category: {
     color: Colors.grey,
+    marginHorizontal: 18,
   },
   title: {
     color: '#000000',
     fontSize: 25,
     fontWeight: 'bold',
+    marginHorizontal: 18,
+  },
+  ratings: {
+    marginHorizontal: 18,
+    marginVertical: 10,
   },
   images: {
     height: HEIGHT / 4,
     width: '100%',
+    marginBottom: 10,
+    position: 'relative',
+  },
+  favouriteBtn: {
+    position: 'absolute',
+    zIndex: 1,
+    backgroundColor: 'white',
+    right: 10,
+    top: 10,
+    padding: 5,
+    borderRadius: 999,
   },
   image: {
-    width: WIDTH - 30,
-    flex: 1,
+    width: WIDTH,
+    objectFit: 'contain',
   },
   info: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
     marginTop: 5,
+    marginHorizontal: 18,
   },
   price: {
     color: Colors.primary,
@@ -81,6 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 20,
+    marginHorizontal: 18,
   },
   addBtn: {
     borderWidth: 2,
@@ -107,6 +126,7 @@ const styles = StyleSheet.create({
   },
   detail: {
     marginTop: 15,
+    marginHorizontal: 18,
   },
   label: {
     fontWeight: '400',

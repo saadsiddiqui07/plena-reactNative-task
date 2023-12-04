@@ -6,7 +6,7 @@ const d = [...Array(5)];
 
 const Banners = () => {
   return (
-    <View>
+    <View style={styles.main}>
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}

@@ -3,6 +3,9 @@ import Colors from '../../../constants/Colors';
 import {WIDTH} from '../../../constants/Dimensions';
 
 const styles = StyleSheet.create({
+  main: {
+    marginHorizontal: 15,
+  },
   banner: {
     backgroundColor: Colors.cardActiveColor,
     flexDirection: 'row',
@@ -41,6 +44,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: 'black',
     marginTop: 10,
+    marginHorizontal: 15,
   },
 });
 

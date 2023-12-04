@@ -34,7 +34,7 @@ const HomeScreen = ({navigation}: any) => {
         keyExtractor={data => `${data.id}`}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.products}
-        // ListHeaderComponent={<Banners />}
+        ListHeaderComponent={<Banners />}
         numColumns={2}
         style={{flex: 1}}
         renderItem={({item}) => (

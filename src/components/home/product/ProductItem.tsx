@@ -7,6 +7,7 @@ import Colors from '../../../constants/Colors';
 import {truncateText} from '../../../utils';
 import {cartAtom} from '../../../atoms/cartAtom';
 import {useAtom} from 'jotai';
+import {favouriteAtom} from '../../../atoms/favouriteAtom';
 
 interface Props {
   item: Product;
@@ -15,11 +16,32 @@ interface Props {
 
 const ProductItem = ({item, navigation}: Props) => {
   const [cart, setCart] = useAtom(cartAtom);
+  const [favList, setFavList] = useAtom(favouriteAtom);
 
-  const addProcuctToCart = (added: Product) => {
+  const isFavourite = favList.find((obj: Product) => obj.id === item.id);
+  const isAdded = cart.find((obj: Product) => obj.id === item.id);
+
+  const handleAddToFavourites = (product: Product) => {
+    if (!isFavourite) {
+      const prodcutToAdd = {
+        ...product!,
+        isFavourite: true,
+        quantity: product.quantity,
+      };
+      setFavList([...favList, prodcutToAdd]);
+    } else {
+      const newList = favList.filter((obj: Product) => obj.id !== item.id);
+      setFavList(newList);
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (isAdded) {
+      return;
+    }
     const prodcutToAdd = {
-      ...added!,
-      isFavourite: added?.isFavourite,
+      ...item!,
+      isFavourite: item?.isFavourite,
       quantity: 1,
     };
     setCart([...cart, prodcutToAdd]);
@@ -30,8 +52,14 @@ const ProductItem = ({item, navigation}: Props) => {
       activeOpacity={0.8}
       style={styles.container}
       onPress={() => navigation.navigate('Details', {id: item.id})}>
-      <TouchableOpacity style={styles.favouriteBtn}>
-        <Ionicons name="heart-outline" color={Colors.favouriteBtn} size={20} />
+      <TouchableOpacity
+        style={styles.favouriteBtn}
+        onPress={() => handleAddToFavourites(item)}>
+        <Ionicons
+          name={isFavourite ? 'heart' : 'heart-outline'}
+          color={Colors.favouriteBtn}
+          size={20}
+        />
       </TouchableOpacity>
       <Image
         source={{uri: item.thumbnail}}
@@ -44,7 +72,7 @@ const ProductItem = ({item, navigation}: Props) => {
           <Text style={styles.price}>${item.price}</Text>
           <Text style={styles.title}>{truncateText(item.title!, 15)}</Text>
         </View>
-        <TouchableOpacity onPress={() => addProcuctToCart(item)}>
+        <TouchableOpacity onPress={handleAddToCart}>
           <Ionicons
             name="add-circle"
             size={30}
