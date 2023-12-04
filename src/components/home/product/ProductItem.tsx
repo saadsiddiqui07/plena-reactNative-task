@@ -17,8 +17,6 @@ const ProductItem = ({item, navigation}: Props) => {
   const [cart, setCart] = useAtom(cartAtom);
 
   const addProcuctToCart = (added: Product) => {
-    // if the quantity is 1 i.e. IT IS IN THE CART
-    // SO NOW I DO NOT ADD THE PRODUCT INSTEAD I INCREASE THE QUANTITY
     const prodcutToAdd = {
       ...added!,
       isFavourite: added?.isFavourite,
@@ -38,7 +36,7 @@ const ProductItem = ({item, navigation}: Props) => {
       <Image
         source={{uri: item.thumbnail}}
         resizeMode="cover"
-        resizeMethod="resize"
+        resizeMethod="auto"
         style={styles.image}
       />
       <View style={styles.details}>

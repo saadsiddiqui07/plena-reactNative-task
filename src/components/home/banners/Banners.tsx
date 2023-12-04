@@ -10,6 +10,7 @@ const Banners = () => {
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.container}
         data={d}
         renderItem={() => (
           <View style={styles.banner}>

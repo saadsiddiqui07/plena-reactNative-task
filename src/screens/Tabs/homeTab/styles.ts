@@ -14,10 +14,8 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: 'black',
   },
-  dataView: {},
-  products: {
-    padding: 15,
-  },
+
+  products: {},
 });
 
 export default styles;

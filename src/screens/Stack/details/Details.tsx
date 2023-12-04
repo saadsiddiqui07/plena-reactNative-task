@@ -1,9 +1,11 @@
 import {
+  FlatList,
   SafeAreaView,
   StatusBar,
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import styles from './styles';
@@ -69,7 +71,17 @@ const DetailsScreen = ({navigation, route}: any) => {
         <View>
           <AntDesign name="star" color={'gold'} size={22} />
         </View>
-        <View style={styles.images} />
+        <View style={styles.images}>
+          <FlatList
+            data={product?.images}
+            pagingEnabled
+            horizontal
+            snapToAlignment="center"
+            renderItem={({item}) => (
+              <Image source={{uri: item}} style={styles.image} />
+            )}
+          />
+        </View>
         <View style={styles.info}>
           <Text style={styles.price}>${product?.price}</Text>
           <View style={styles.discount}>

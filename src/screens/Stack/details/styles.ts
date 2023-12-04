@@ -1,7 +1,6 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import Colors from '../../../constants/Colors';
-
-const {height} = Dimensions.get('window');
+import {HEIGHT, WIDTH} from '../../../constants/Dimensions';
 
 const styles = StyleSheet.create({
   main: {
@@ -48,10 +47,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   images: {
-    height: height / 4,
+    height: HEIGHT / 4,
     width: '100%',
-    backgroundColor: 'lightgray',
-    marginVertical: 10,
+  },
+  image: {
+    width: WIDTH - 30,
+    flex: 1,
   },
   info: {
     flexDirection: 'row',
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   addBtn: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: Colors.primary,
     padding: 15,
     borderRadius: 20,

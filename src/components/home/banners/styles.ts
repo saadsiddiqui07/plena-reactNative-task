@@ -14,6 +14,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 15,
   },
+  container: {
+    padding: 15,
+  },
   details: {
     flexDirection: 'column',
     gap: 2,
