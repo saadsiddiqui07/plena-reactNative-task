@@ -17,17 +17,21 @@ interface Props {
 
 const FavouriteItem = ({item, navigation}: Props) => {
   const [favList, setFavList] = useAtom(favouriteAtom);
-
-  const addToFavourites = (product: Product) => {
-    const prodcutToAdd = {
-      ...product!,
-      isFavourite: true,
-      quantity: product.quantity,
-    };
-    setFavList([...favList, prodcutToAdd]);
-  };
-
   const isFavourite = favList.find((obj: Product) => obj.id === item.id);
+
+  const handleAddToFavourites = (product: Product) => {
+    if (!isFavourite) {
+      const prodcutToAdd = {
+        ...product!,
+        isFavourite: true,
+        quantity: product.quantity,
+      };
+      setFavList([...favList, prodcutToAdd]);
+    } else {
+      const newList = favList.filter((obj: Product) => obj.id !== item.id);
+      setFavList(newList);
+    }
+  };
 
   return (
     <TouchableOpacity
@@ -36,7 +40,7 @@ const FavouriteItem = ({item, navigation}: Props) => {
       onPress={() => navigation.navigate('Details', {id: item.id})}>
       <TouchableOpacity
         style={styles.favouriteBtn}
-        onPress={() => addToFavourites(item)}>
+        onPress={() => handleAddToFavourites(item)}>
         <Ionicons
           name={isFavourite ? 'heart' : 'heart-outline'}
           color={Colors.favouriteBtn}

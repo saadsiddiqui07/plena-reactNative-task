@@ -89,7 +89,7 @@ const DetailsScreen = ({navigation, route}: any) => {
       </View>
       <View style={styles.details}>
         <Text style={styles.category}>{product?.category}</Text>
-        <Text style={styles.title}>{product?.title}</Text>
+        <Text style={styles.title}>{product?.title || 'Loading title...'}</Text>
         <View style={styles.ratings}>
           <StarRating rating={product?.rating!} />
         </View>

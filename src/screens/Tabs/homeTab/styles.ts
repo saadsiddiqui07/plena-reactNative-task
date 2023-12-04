@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
   },
 
   products: {},
+  loader: {marginTop: 10, justifyContent: 'center', alignItems: 'center'},
 });
 
 export default styles;
