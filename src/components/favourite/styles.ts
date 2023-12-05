@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     // width: '100%',
     width: WIDTH / 2,
     position: 'relative',
-    height: WIDTH / 2,
+    // height: WIDTH / 2,
     flex: 1,
     margin: 12,
   },

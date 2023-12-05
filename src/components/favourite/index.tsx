@@ -56,16 +56,8 @@ const FavouriteItem = ({item, navigation}: Props) => {
       <View style={styles.details}>
         <View style={styles.info}>
           <Text style={styles.price}>${item.price}</Text>
-          <Text style={styles.title}>{truncateText(item.title!, 15)}</Text>
+          <Text style={styles.title}>{truncateText(item.title!, 18)}</Text>
         </View>
-        {/* <TouchableOpacity>
-          <Ionicons
-            name="close-outline"
-            size={30}
-            color={'red'}
-            style={styles.addBtn}
-          />
-        </TouchableOpacity> */}
       </View>
     </TouchableOpacity>
   );

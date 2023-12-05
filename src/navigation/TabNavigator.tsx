@@ -28,7 +28,7 @@ const animate1 = {
   1: {scale: 1.1, translateY: -18},
 };
 const animate2 = {
-  0: {scale: 1.2, translateY: -24},
+  0: {scale: 1.1, translateY: -18},
   1: {scale: 1, translateY: 1},
 };
 

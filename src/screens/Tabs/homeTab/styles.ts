@@ -15,7 +15,9 @@ const styles = StyleSheet.create({
     color: 'black',
   },
 
-  products: {},
+  products: {
+    paddingBottom: 100,
+  },
   loader: {marginTop: 10, justifyContent: 'center', alignItems: 'center'},
 });
 
